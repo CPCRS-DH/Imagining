@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caravan Routes</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://js.arcgis.com/4.32/esri/themes/light/main.css" />
+    <link rel="stylesheet" href="./style/style.css">
+</head>
+<body>
+
+    <!--Splash Page-->
+
+    <div class="splash-container">
+        <div class="splash-inner">
+            <div class="splash-title">
+                <img src="assets/icons/Tent_Icon.png" alt="">
+                <p>Resurrection City<span>Digital Atlas</span></p>
+            </div>
+            <div class="panel-line"></div>
+            <p>Perhaps one of the most impressive organizational feats of the Poor People's Campaign were the widespread efforts of demonstrators planning and joining caravans across the nation that travelled to Washington, D.C. These caravans were organized locally and coordinated with the SCLC to map out routes, rally locations, sites to rest, and pick up more demonstrators. Like the entirety of the Poor People's Campaign, the demonstrators were closely watched by military informers and journalists.</p>
+            <p>Much like Resurrection City, the caravans were deliberately designed to be highly visible to mobilize participation and raise public awareness. The caravan participants were a diverse, multiracial group representing communities across the country. Select a route to see where the caravans stopped and what cause they were fighting for.</p>
+            <button type="button" class="splash-btn">Go to the Map</button>
+        </div>
+    </div>
+
+    <!--End Splash Page-->
+    
+    <!--Navbar-->
+    <nav class="navbar">
+        <div class="logo-title">
+            <a href="#">
+                <img src="assets/icons/Tent_Icon.png" alt="">
+            </a>
+            <p>Resurrection City<span>Caravan Routes</span></p>
+        </div>
+
+        <ul class="nav-items">
+            <li class="nav-item-inactive">
+                <a href="https://CPCRS-DH.github.io/Imagining/" class="nav-link-inactive">Imagining</a>
+            </li>
+            <li class="nav-item">
+                <a href="https://CPCRS-DH.github.io/Planning-Building/" target="_blank" class="nav-link">Planning & Building</a>
+            </li>
+            <li class="nav-item">
+                <a href="https://CPCRS-DH.github.io/Living-Leaving/" target="_blank" class="nav-link">Living & Leaving</a>
+            </li>
+            <li class="nav-item">
+                <a href="https://CPCRS-DH.github.io/Afterlives/" target="_blank" class="nav-link">Afterlives</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">About</a>
+            </li>
+        </ul>
+    </nav>
+    <!--End Navbar-->
+
+    <!--Left Panel Buttons-->
+
+    <div class="left-panel-btn-container">
+        <div id="panel-btn" class="panel-btn">
+            <i class="fa-solid fa-info"></i>
+            <span class="tooltiptext">Read about Resurrection City caravans</span>
+        </div>
+
+        <div id="help-btn" class="help-btn">
+            <i class="fa-solid fa-question"></i>
+            <span class="tooltiptext">Learn how to use the app</span>
+        </div>
+    </div>
+
+    <!--Right Panel Buttons-->
+
+    <div class="right-panel-btn-container">
+        <div id="zoom-in-btn" class="zoom-in-btn">
+            <i class="fa-solid fa-plus"></i>
+            <span class="tooltiptext">Zoom in</span>
+        </div>
+
+        <div id="zoom-out-btn" class="zoom-out-btn">
+            <i class="fa-solid fa-minus"></i>
+            <span class="tooltiptext">Zoom out</span>
+        </div>
+
+        <div id="filter-btn" class="filter-btn">
+            <i class="fa-solid fa-gear"></i>
+            <span class="tooltiptext">Filter caravan routes</span>
+        </div>
+    </div>
+
+    <!--End Panel Buttons-->
+
+    <!--Filter / Legend Panel-->
+
+    <div class="filter-legend-container">
+        <div class="filter-title">
+            <h4>Filter Caravan Routes</h4>
+            <i id="filter-close" class="fa-solid fa-close"></i>
+        </div>
+        <div class="filter-container">
+            <select class="caravan-filter" id="caravan-filter">
+                <option value="0">Select a Caravan</option>
+                <option value="1">South Silver (Freedom Train)</option>
+                <option value="2">South Red (Mule Train)</option>
+                <option value="3">South Pink (Freedom Train)</option>
+                <option value="4">South Black (Southern Caravan)</option>
+                <option value="5">West Dark Blue (Midwestern Caravan)</option>
+                <option value="6">North Green (Eastern Caravan)</option>
+                <option value="7">West Light Blue (Western Caravan)</option>
+                <option value="8">West Yellow (Western Caravan)</option>
+                <option value="9">West Orange (Western Caravan)</option>
+            </select>
+            <button id="filter-reset-btn">Reset Filter</button>
+        </div>
+        <h4>Legend</h4>
+        <div class="legend-container">
+            <div class="legend">
+                <div class="route-container">
+                    <h5>South Silver (Freedom Train)</h5>
+                    <hr>
+                </div>
+                <div class="route-container">
+                    <h5>South Red (Mule Train)</h5>
+                    <hr>
+                </div>
+                <div class="route-container">
+                    <h5>South Pink (Freedom Train)</h5>
+                    <hr>
+                </div><div class="route-container">
+                    <h5>South Black (Southern Caravan)</h5>
+                    <hr>
+                </div>
+                <div class="route-container">
+                    <h5>West Dark Blue (Midwestern Caravan)</h5>
+                    <hr>
+                </div>
+                <div class="route-container">
+                    <h5>North Green (Eastern Caravan)</h5>
+                    <hr>
+                </div>
+                <div class="route-container">
+                    <h5>West Light Blue (Western Caravan)</h5>
+                    <hr>
+                </div>
+                <div class="route-container">
+                    <h5>West Yellow (Western Caravan)</h5>
+                    <hr>
+                </div>
+                <div class="route-container">
+                    <h5>West Orange (Western Caravan)</h5>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--End Filter / Legend Panel-->
+
+    <!--Side Panel-->
+
+    <div class="side-panel">
+        <div class="title-close">
+            <div class="title-logo">
+                <!-- <img src="assets/icons/Tent_Icon.png" alt=""> -->
+                <h3>Caravan Routes</h3>
+            </div>        
+            <i id="panel-close" class="fa-solid fa-close"></i>
+        </div>
+        <div class="panel-line"></div>
+        <div class="side-panel-text">
+            <p>Perhaps one of the most impressive organizational feats of the Poor People's Campaign were the widespread efforts of demonstrators planning and joining caravans across the nation that travelled to Washington, D.C. These caravans were organized locally and coordinated with the SCLC to map out routes, rally locations, sites to rest, and pick up more demonstrators. Like the entirety of the Poor People's Campaign, the demonstrators were closely watched by military informers and journalists.</p>
+            <img class="app-image" src="./assets/images/Atkins_Mule_Train.JPG" alt="Aerial View of Resurrection City" data-caption="Atkins Mule Train on a highway outside of Washington D.C.">
+            <p><span>Atkins Mule Train on a highway outside of Washington D.C.</span></p>
+            <p>Much like Resurrection City, the caravans were deliberately designed to be highly visible to mobilize participation and raise public awareness. The caravan participants were a diverse, multiracial group representing communities across the country.</p>
+            <p>Select a route to see where the caravans stopped and what different causes they might have represented.</p>
+        </div>
+    </div>
+
+    <!--End Side Panel-->
+
+    <!--Help Panel-->
+
+    <div id="help-panel" class="help-panel">
+        <div class="title-close">
+            <div class="title-logo">
+                <!-- <img src="assets/icons/Tent_Icon.png" alt=""> -->
+                <h3>Using the App</h3>
+            </div>
+            <i id="help-close" class="fa-solid fa-close"></i>
+        </div>
+        <div class="panel-line"></div>
+        <div class="help-panel-text">
+            <p>Select a route to see where the caravans stopped and what cause they were fighting for. We recommend you spend some extra time exploring the Mule Train (South Red, highlighted on the map), which features additional archival materials.</p>
+        </div>
+    </div>
+
+    <!--End Help Panel-->
+
+    <!--Cities Popup-->
+
+    <div class="popup" id="city-card">
+        <div class="popup-close">
+            <i id="city-close" class="fa-solid fa-close"></i>
+        </div>
+        <div class="popup-container">
+            <img src="#" class="app-image" id="city-popup-image-id">
+            <div class="caravan-container">
+                <p class="caravan"></p>
+            </div>
+            <div class="panel-line"></div>
+            <div class="place-date-container">
+                <p class="city-state-date"></p>
+            </div>
+            <p class="details"></p>
+        </div>
+    </div>
+
+    <!--End Cities Popup-->
+
+    <!--Route Popup-->
+
+    <div class="popup" id="caravan-card">
+        <div class="popup-close">
+            <i id="caravan-close" class="fa-solid fa-close"></i>
+        </div>
+        <div class="popup-container">
+            <div class="caravan-image">
+                <video class="caravan-video" autoplay loop muted><source class="app-video" src="#"></video>
+                <img src="#" class="app-image" id="caravan-popup-image-id">
+            </div>
+            <div class="caravan-container">
+                <p class="caravan-info"></p>
+            </div>
+            <div class="panel-line"></div>
+            <div class="place-date-container">
+                <p class="caravan-number"></p>
+            </div>
+        </div>
+    </div>
+
+    <!--End Route Popup-->
+
+    <!-- Navigation Modal -->
+
+    <div class="modal-container" id="nav-modal">
+        <div class="nav-modal-inner">
+            <div class="nav-modal-title">
+                <a href="#" class="modal-close" id="nav-close">
+                    <i class="fa-solid fa-close"></i>
+                </a>
+            </div>
+    
+            <div class="panel-line"></div>
+    
+            <div class="options-section">
+                <h1>Explore the Atlas</h1>
+                <div class="options-section-text">
+                    <span>Explore our recreations of Resurrection City across these four other sequences, each detailing an important phase of this site's history and impact:</span>
+                </div>
+                <div class="options-container">
+                    <div class="option-wrapper">
+                        <div class="option">
+                            <a href="https://CPCRS-DH.github.io/Resurrection-City/" target="_blank">
+                            <img src="./assets/images/Navigation/landing.png" alt="">
+                            <h3>Introduction</h3>
+                            </a>
+                        </div>
+                        <span>Explore an introduction to Resurrection City.</span>
+                    </div>
+                    <div class="option-wrapper">
+                        <div class="option">
+                            <a href="https://CPCRS-DH.github.io/Planning-Building/" target="_blank">
+                            <img src="./assets/images/Navigation/planning.jpg" alt="">
+                            <h3>Planning &amp Building</h3>
+                            </a>
+                        </div>
+                        <span>Explore Resurrection City through a 3D model.</span>
+                    </div>
+                    <div class="option-wrapper">
+                        <div class="option">
+                            <a href="https://CPCRS-DH.github.io/Living-Leaving/" target="_blank">
+                            <img src="./assets/images/Navigation/living.jpg" alt="">
+                            <h3>Living &amp Leaving</h3>
+                            </a>
+                        </div>
+                        <span>What was daily life like in Resurrection City?</span>
+                    </div>
+                    <div class="option-wrapper">
+                        <div class="option">
+                            <a href="https://CPCRS-DH.github.io/Afterlives/" target="_blank">
+                            <img src="./assets/images/Navigation/afterlives.jpg" alt="">
+                            <h3>Afterlives</h3>
+                            </a>
+                        </div>
+                        <span>What is the legacy of Resurrection City?</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- End Navigation Modal -->
+
+    <!--About Modal-->
+
+    <div class="modal-container" id="about-modal">
+        <div class="modal-inner">
+            <div class="modal-tabs-holder">
+                <div class="modal-tabs-div">
+                    <button class="modal-tab active" data-tab="modal-tab-one">About the Project</button>
+                    <button class="modal-tab" data-tab="modal-tab-two">Project Resources</button>
+                </div>
+                <div class="modal-close-div">
+                    <a href="#" class="modal-close" id="about-close">
+                        <i class="fa-solid fa-close"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="panel-line"></div>
+            
+            <div class="modal-tab-content active" id="modal-tab-one">
+                <h3>How to preserve a cultural landscape that has been lost or erased - or was meant to be temporary?</h3>
+                <p>The Resurrection City Digital Atlas explores the possibilities for preserving cultural landscapes that have gone missing - whether erased, destroyed, overwritten, or ephemeral. The cultural landscape at the center of this project - Resurrection City - was a protest encampment located on the National Mall in 1968 by the Poor People's Campaign. Envisioned in 1967 by Dr. Martin Luther King, Jr., and fellow SCLC leaders, Resurrection City (RC) was built in May-June 1968 after King's assassination. The encampment marked an expression of the multiracial, anti-poverty, civil rights campaign that extended King's activism. This remarkable temporary city for nearly 3,000 inhabitants was built by activists and volunteers (with National Park Service permission) in the heart of monumental Washington. RC was a civil rights protest of extraordinary significance. It was dismantled in the summer of 1968, and today, no traces remain.</p>
+                <p>Resurrection City occupied the National Mall for two months in 1968 - an incredibly fraught moment on the most iconic memorial landscape in the US. In a democratic society, protests are an important demonstration that the political system is working, that dissent has a place. But how are protests preserved? Through stories, in history texts, perhaps on film - but rarely in the landscape itself, apart from a marker or a monument.</p>
+                <p>This "digital atlas" project explores means of cultural landscape documentation and interpretation for places significant to the civil rights history, particularly those poorly represented by traditional graphic documentation and historic preservation: places of protest, places deliberately erased, and places carelessly lost.</p>
+                <p>Responding to the paradoxical challenge of preserving an ephemeral landscape, we assembled images, public media, and archives - connecting them through mapping and apps - to produce a “digital atlas” re-presenting the spatial experiences of RC in conversation with the same spaces we experience today. It is a simulacrum of sorts, and a provocation to relate the erased and the actual landscape in our own moment.</p>
+                <p>The use of geographic methods is intended to make this work relatable and useful to others: the atlas functions as an interpretation of this particular site on the National Mall; as a framework for connecting to other adjacent civil rights landscapes in the DC monumental core; and as a prompt for others to build more and better digital atlases as a novel preservation workflow to meet future needs and priorities.</p>
+                <p>The Resurrection City Digital Atlas was produced by a dedicated and creative team of researchers and developers. Elizabeth Donison created a foundation of archival research; Daniel Watts led digital design and development work; Emily Holloway curated and crafted the whole digital atlas; Lia Schiffito provided development support on the atlas's participatory functions; and Randy Mason and Brent Fortenberry conceived the project with former NPS landscape architect Julie McGilvray. The project also benefited greatly from the historical expertise and insights of Kate Masur, Derek Musgrave, and Sarah Schoenfeld, as well as Cheryl LaRoche and Thaïsa Way.</p>
+            </div>
+            <div class="modal-tab-content" id="modal-tab-two">
+                <h3>Smithsonian - National Museum of African American History and Culture (NMAAHC)</h3>
+                <ul>
+                    <li><a href="https://upenn.box.com/s/frnm8qi0tmnfm7twhx2bf0x05yc0cvy8" target="_blank">Poor People's Campaign Interviews (transcripts)</a></li>
+                    <li><a href="https://upenn.box.com/s/557xw0dm0u1xhbdenbyq4kg0yw2lwsds" target="_blank">SCLC booklet with photographs of RC</a> (2012.92.3)</li>
+                    <li><a href="https://nmaahc.si.edu/object/nmaahc_2012.110?destination=/explore/collection/search%3Fedan_q%3D2012.110" target="_blank">Hunger Wall plywood panel mural</a> (2012.110)</li>
+                </ul>
+                <h3>National Archives at College Park, Maryland</h3>
+                <ul>
+                    <li>Resurrection City <a href="https://catalog.archives.gov/id/32072" target="_blank">footage</a> (111-LC-53133)</li>
+                    <li>Resurrection City footage (111-LC-53132)</li>
+                    <li>Dismantling Resurrection City footage (111-LC-53674)</li>
+                    <li>*“Special Feature #3: The Poor People's Campaign, What do they Want?” Audio <a href="https://catalog.archives.gov/id/130268" target="_blank">broadcast</a> from May 21, 1968</li>
+                    <li>Poor People's March and Resurrection City (306.6004) - all the digitized RC/PPC footage from the <a href="https://catalog.archives.gov/id/52212" target="_blank">Hearst Corporation</a></li>
+                    <li>Southern Caravan footage (111-LC52874)</li>
+                    <li>Poor People's Campaign (Phoenix Films version) <a href="https://catalog.archives.gov/id/102036395" target="_blank">footage</a> - 306.6004A</li>
+                    <li>Complaints, About Service and Personnel, Poor Peoples Campaign, 1968 (Record Group 79, Box 0360, A3615)</li>
+                    <li>Background Papers for "The role of Federal Forces in Civil Disturbances, 1945-1971" (Record Group 319: Records of Army Staff, Box 18)</li>
+                    <li>Poor People's March, Sites for Camp</li>
+                    <li>Poor People's Campaign-Washington Spring Project, 1968-Messages (Folders 1-2)</li>
+                </ul>
+                <h3>University of Maryland</h3>
+                <ul>
+                    <li>Poor People's Campaign, 1968 (AFL-CIO Civil Rights Department Records (0068-LBR-RG9-00), box 58, folder 25)</li>
+                </ul>
+                <h3>Emory University Libraries</h3>
+                <ul>
+                    <li><a href="https://archives.libraries.emory.edu/repositories/7/archival_objects/358159" target="_blank">Poor People's Campaign photographic journal, draft, circa 1968</a> (box 375, folder 2)</li>
+                    <li>Poor People's Campaign publication, circa 1968 (box OP13, folder 4)</li>
+                    <li><a href="https://archives.libraries.emory.edu/repositories/7/archival_objects/358172" target="_blank">True Unity News of Resurrection City, circa 1968 [1 of 2]</a></li>
+                    <li><a href="https://archives.libraries.emory.edu/repositories/7/archival_objects/358160%22 %EF%B7%9FHYPERLINK %22https:/archives.libraries.emory.edu/repositories/7/archival_objects/358173" target="_blank">True Unity News of Resurrection City, circa 1968 [2 of 2]</a></li>
+                    <li><a href="https://archives.libraries.emory.edu/repositories/7/archival_objects/358172%22  HYPERLINK %22https:/archives.libraries.emory.edu/repositories/7/archival_objects/358161" target="_blank">"Resurrection City, U.S.A." draft publication, 1968</a></li>
+                    <li><a href="https://archives.libraries.emory.edu/repositories/7/archival_objects/358161%22 HYPERLINK %22https:/upenn.box.com/shared/static/gv4iaz2c90pk1hd0rdrtaqvniq5nybmg.pdf" target="_blank">Program 6821, "Welcome to Resurrection City," rally at Resurrection City featuring Ralph David Abernathy, Jesse Jackson, and James Bevel, May 26, 1968 (Box 602, F18)</a></li>
+                    <li>"Community Representation of Resurrection City," 1968 (Box 371, F15)</li>
+                    <li>Map of Resurrection City, Washington, D.C., May 25, 1968 (Box 572, F1)</li>
+                    <li>"A Proposal for a film about Resurrection City," undated</li>
+                    <li>Hunter, Charlayne A., "On the Case of Resurrection City," October 1968 (Box 571, F37)</li>
+                    <li>Poor People's Campaign, Resurrection City #44, 1968 (Box 9, F25)</li>
+                    <li>Resurrection City, 1968 (Boxes 10, 74, 801)</li>
+                    <li>Poor People's Campaign, 1968, program announcements for SCLC News Central and Resurrection City (original: open reel tape)</li>
+                    <li>Poor People's Campaign, 1968 May 10-19, Roy Wood and Bill Stein reporting for SCLC Radio News (original: open reel tape)</li>
+                    <li>Poor People's Campaign, 1968 May 28, Resurrection City demonstration, Andrew J. Young on mud and rain, demonstration at Agricultural Building, Ralph David Abernathy, James Bevel, Jesse Jackson, and Joseph Robertson (original: open reel tape)</li>
+                    <li>Poor People's Campaign, 1968, excerpt of Martin Luther King, Jr. discussing availability of food and housing in Washington, at event in Albany, Georgia (original: open reel tape)</li>
+                    <li>Poor People's Campaign, 1968, protest for poor people with speeches, freedom songs, and a march to the Department of Agriculture led by James Bevel and Jesse Jackson (original: open reel tape)</li>
+                    <li>Poor People's Campaign, 1968 May ?, Resurrection City, Jimmy Collier performing (original: open reel tape)</li>
+                </ul>
+                <h3>George Mason University Libraries (Fairfax, VA)</h3>
+                <ul>
+                    <li>Ollie Atkins Photograph Collection (C0036, Series 5: Oversize, 1945-1971)</li>
+                    <li>Jack Rottier Photographic Collection (C0003), Series 8: Box 8: Poor People's Campaign Photos</li>
+                </ul>
+                <h3>Library of Congress</h3>
+                <ul>
+                    <li>Bob Adelman Photographs (Boxes 291-293, 397)</li>
+                    <li>Look Magazine contact sheets from 1968 issue</li>
+                    <li><a href="https://www.loc.gov/item/gm69002812/" target="_blank">"National parks of Washington, D.C."</a> (G3851.G52 1968.US).</li>
+                    <li><a href="https://www.loc.gov/item/gm69002812/" target="_blank">"Washington west (F) quadrangle, District of Columbia--Maryland--Virginia, 2.5 x 3.75 minute series orthophotomap" (G3851.A4 1968.G4).</a></li>
+                    <li><a href="https://www.loc.gov/resource/g3850.ct004528/?r=0.386,0.57,0.07,0.039,0" target="_blank">"[Washington, D.C. and the metropolitan area]" (G3850.G52 1969.U5).</a></li>
+                </ul>
+                <h3>Lyndon Baines Johnson Presidential Library</h3>
+                <ul>
+                    <li>James Gaither Papers (White House Aide) - Box 36</li>
+                    <li>Warren Christopher Papers (Principle DOJ Official) - Box 5</li>
+                    <li>Ramsey Clark Papers (Boxes 73-74)</li>
+                    <li>White House Central Files (WHCF), Subject File HU 4 (Human Rights, Freedoms) (Boxes 57, 60)</li>
+                    <li>Nash Castro Papers (Box 4)</li>
+                </ul>
+                <h3>Histories of the Civil Rights Movement & Resurrection City</h3>
+                <ul>
+                    <li>Afield, M.D., W., & Gibson, A. (1970). Children of Resurrection City. Association for Childhood Education International.</li>
+                    <li>Asch, C. M., & Musgrove, G. D. (2017). Chocolate City: A History of Race and Democracy in the Nation's Capital. The University of North Carolina Press.</li>
+                    <li>Barber, L. G. (2004). Marching on Washington: The Forging of an American Political Tradition. University of California Press.</li>
+                    <li>Beagle, P. (2000). The Poor People's Campaign. Creative Nonfiction, 15, 236-259.</li>
+                    <li>Cha-Jua, S. K., & Lang, C. (2007). The “Long Movement” as Vampire: Temporal and Spatial Fallacies in Recent Black Freedom Studies. The Journal of African American History, 92(2), 265-288. <a href="https://doi.org/10.1086/JAAHv92n2p265">https://doi.org/10.1086/JAAHv92n2p265</a></li>
+                    <li>Dwyer, O. J., & Alderman, D. H. (2008). Civil Rights Memorials and the Geography of Memory (1st ed). Center for American Places at Columbia College Chicago.</li>
+                    <li>Euchner, C. C. (2010). Nobody Turn Me Around: A People's History of the 1963 March on Washington. Beacon Press.</li>
+                    <li>Fager, C. E. (1969). Uncertain Resurrection: The Poor People's Washington Campaign. </li>
+                    <li>Gray, D. (2018). “Remaining Awake Through a Great Revolution”: Martin Luther King, Jr.'s Legacy of Activism in Washington, D.C. Washington History, 30(2), 10-19.</li>
+                    <li>Hamilton, R. (2020). Dr. Martin Luther King Jr. And the Poor People's Campaign of 1968. University of Georgia Press.</li>
+                    <li>Hall, J. D. (2005). The Long Civil Rights Movement and the Political Uses of the Past. Journal of American History, 91(4), 1233. <a href="https://doi.org/10.2307/3660172" target="_blank">https://doi.org/10.2307/3660172</a></li>
+                    <li>Jeffries, H. K. (2018). Black Freedom Movement. In Keywords for African American Studies (Vol. 8). New York University Press.</li>
+                    <li>Lee, T., & Vale, L. (2018). Resurrection City: Washington DC, 1968. Thresholds, (41), 112-121. <a href="https://doi.org/10.1162/thld_a_00100" target="_blank">https://doi.org/10.1162/thld_a_00100</a></li>
+                    <li>Mantler, G. K. (2013). Power to the Poor: Black-Brown Coalition and the Fight for Economic Justice, 1960-1974. UNC Press Books.</li>
+                    <li>McKnight, G. (1998). The Last Crusade: Martin Luther King Jr., The Fbi, And The Poor People's Campaign. Basic Books.</li>
+                    <li>Masur, K. (2021). Until Justice be Done: America's First Civil Rights Movement, From the Revolution to Reconstruction (First edition). W. W. Norton & Company.</li>
+                    <li>Murphy, M.-E. B. (2018). Jim Crow Capital: Women and Black Freedom Struggles in Washington, D.C., 1920-1945 (1st ed.). University of North Carolina Press.</li>
+                    <li>Pearlman, L. (2019). Democracy's Capital: Black Political Power in Washington, D.C., 1960s-1970s. UNC Press Books.</li>
+                    <li>Pineda, E. R. (2021). Seeing Like an Activist: Civil Disobedience and the Civil Rights Movement. Oxford University Press.</li>
+                    <li>Schmidt, C. W. (2021). Civil Rights in America, A History. Cambridge University Press.</li>
+                    <li>Wiebenson, J. (1969). Planning and Using Resurrection City. Journal of the American Institute of Planners, 35(6), 405-411. <a href="https://doi.org/10.1080/01944366908977260" target="_blank">https://doi.org/10.1080/01944366908977260</a></li>
+                </ul>
+                <h3>Black Geographies & Critical Cartography</h3>
+                <ul>
+                    <li>Alderman, D. H., & Bottone, E. (2024). On Doing Justice to Black Mobility and Movement in the Classroom. The Geography Teacher, 21(1), 25-32. <a href="https://doi.org/10.1080/19338341.2024.2315528" target="_blank">https://doi.org/10.1080/19338341.2024.2315528</a></li>
+                    <li>Alderman, D. H., & Inwood, J. (2023). On The Living Black Atlas: Learning Geospatial Ethics from the African American Freedom Struggle. The Cartographic Journal, 0(0), 1-9. <a href="https://doi.org/10.1080/00087041.2023.2256131" target="_blank">https://doi.org/10.1080/00087041.2023.2256131</a></li>
+                    <li>Alderman, D. H., Inwood, J. F. J., & Bottone, E. (2021). The mapping behind the movement: On recovering the critical cartographies of the African American Freedom Struggle. Geoforum, 120, 67-78. <a href="https://doi.org/10.1016/j.geoforum.2021.01.022" target="_blank">https://doi.org/10.1016/j.geoforum.2021.01.022</a></li>
+                    <li>Alderman, D. H., Román-Rivera, M., Camponovo, M., & Kesler, R. (2025). Mapping as Black Memory-Work: Toward a Restorative Cartography of Urban Renewal/Removal in Knoxville, Tennessee*. Geographical Review, 115(4), 529-551. <a href="https://doi.org/10.1080/00167428.2024.2376147" target="_blank">https://doi.org/10.1080/00167428.2024.2376147</a></li>
+                    <li>Frenzel, F. (2020). The Role of Spatial Organization in Resurrection City and Other Protest Camps. Contention, 8(1), 28-48. <a href="https://doi.org/10.3167/cont.2020.080104" target="_blank">https://doi.org/10.3167/cont.2020.080104</a></li>
+                    <li>Inwood, J. F., & Alderman, D. H. (2018). When the archive sings to you: SNCC and the atmospheric politics of race. Cultural Geographies, 25(2), 361-368. <a href="https://doi.org/10.1177/1474474017739023" target="_blank">https://doi.org/10.1177/1474474017739023</a></li>
+                    <li>Lipsitz, G. (2007). The Racialization of Space and the Spatialization of Race: Theorizing the Hidden Architecture of Landscape. Landscape Journal, 26(1), 10-23.</li>
+                    <li>McCutcheon, P. (2019). Fannie Lou Hamer's Freedom Farms and Black Agrarian Geographies. Antipode, 51(1), 207-224. <a href="https://doi.org/10.1111/anti.12500" target="_blank">https://doi.org/10.1111/anti.12500</a></li>
+                    <li>McKittrick, K. (2006). Demonic Grounds: Black Women and the Cartographies of Struggle. University of Minnesota Press.</li>
+                    <li>Moulton, A. A. (2021). Black monument matters: Place-based commemoration and abolitionist memory work. Sociology Compass, 15(12), e12944. <a href="https://doi.org/10.1111/soc4.12944" target="_blank">https://doi.org/10.1111/soc4.12944</a></li>
+                    <li>Purifoy, D. (2021). The parable of Black places. Transactions of the Institute of British Geographers, 46(4), 829-833. <a href="https://doi.org/10.1111/tran.12502" target="_blank">https://doi.org/10.1111/tran.12502</a></li>
+                    <li>Roberts, A., & Butler, M. L. (2022). Contending with the Palimpsest: Reading the Land through Black Women's Emotional Geographies. Annals of the American Association of Geographers, 112(3), 828-837. <a href="https://doi.org/10.1080/24694452.2021.2020615" target="_blank">https://doi.org/10.1080/24694452.2021.2020615</a></li>
+                    <li>Scott, D. (2021). Normalized Alterity: Visualizing Black Spatial Humanities. GeoHumanities, 7(2), 475-493. <a href="https://doi.org/10.1080/2373566X.2021.1904788" target="_blank">https://doi.org/10.1080/2373566X.2021.1904788</a></li>
+                    <li>Woods, C. (2017). Development Arrested: The Blues and Plantation Power in the Mississippi Delta. Verso Books.</li>
+                    <li>Yessler, R., & Hilton Alderman, D. (2021). Art as “Talking Back”: Louise Jefferson's Life and Legacy of Counter-Mapping. Cartographica, 56(2), 137-150. <a href="https://doi.org/10.3138/cart-2020-0011" target="_blank">https://doi.org/10.3138/cart-2020-0011</a></li>
+                </ul>
+                <h3>Digital Resources</h3>
+                <ul>
+                    <li><a href="https://experience.arcgis.com/experience/5e17e7d1c4a8406b9eaf26a4eae77103/page/Home/">Historic African American Communities in the Washington Metropolitan Area</a></li>
+                    <li><a href="https://www.dc1968project.com/map" target="_blank">dc1968 project: 365 stores re washington dc in 1968</a></li>
+                    <li><a href="https://mallhistory.org/map" target="_blank">Histories of the National Mall</a></li>
+                    <li><a href="https://snccdigital.org/" target="_blank">SNCC Digital Gateway</a></li>
+                    <li><a href="https://www.crmvet.org/" target="_blank">Civil Rights Movement Archive</a></li>
+                    <li><a href="https://crdl.usg.edu/" target="_blank">Civil Rights Digital Library</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- End About Modal -->
+
+    <!--Picture Modal-->
+
+    <div class="modal-container" id="img-modal">
+        <div class="modal-inner-image">
+            <div class="image-modal-title">
+                <a href="#" class="modal-close" id="nav-close">
+                    <i class="fa-solid fa-close"></i>
+                </a>
+            </div>
+            <img id="neatModalImg" src="" alt="" data="">
+            <span id="img-caption"></span>
+        </div>
+    </div>
+
+    <!--End Picture Modal-->
+
+    <!--Video Modal-->
+
+    <div class="modal-container" id="video-modal">
+        <div class="modal-inner">
+            <a href="#" class="modal-close" id="video-close">
+                <i class="fa-solid fa-close"></i>
+            </a>
+            <video id="neatModalVideo" autoplay loop muted><source class="app-video" src="#"></video>
+        </div>
+    </div>
+
+    <!--End Video Modal-->
+
+    <!--Timelines-->
+    <div class="timelines">
+    
+        <!-- Timeline One -->
+        <div class="timeline-container">
+            <p>South Silver (Freedom Train)</p>
+            <div>
+                <ol class="timeline">
+                    <li><span>Stop 1:</span><span>Memphis</span><span>, Tennessee (May 2, 1968)</span></li>
+                    <li><span>Stop 2:</span><span>Marks</span><span>, Mississippi (May 3, 1968)</span></li>
+                </ol>
+            </div>
+        </div>
+        <!-- Timeline Two -->
+        <div class="timeline-container">
+            <p>South Red (Mule Train)</p>
+            <div>
+                
+                <ol class="timeline">
+                    <li><span>Stop 1:</span><span>Marks</span><span>, Mississippi (May 13, 1968)</span></li>
+                    <li><span>Stop 2:</span><span>Batesville</span><span>, Mississippi (May 13, 1968)</span></li>
+                    <li><span>Stop 3:</span><span>Grenada</span><span>, Mississippi (May 15, 1968)</span></li>
+                    <li><span>Stop 4:</span><span>Duck Hill</span><span>, Mississippi (May 21, 1968)</span></li>
+                    <li><span>Stop 5:</span><span>Winona</span><span>, Mississippi (May 22, 1968)</span></li>
+                    <li><span>Stop 6:</span><span>Kilmichael</span><span>, Mississippi (May 23, 1968)</span></li>
+                    <li><span>Stop 7:</span><span>Europa</span><span>, Mississippi (May 24, 1968)</span></li>
+                    <li><span>Stop 8:</span><span>Starksville</span><span>, Mississippi (May 26, 1968)</span></li>
+                    <li><span>Stop 9:</span><span>Reform</span><span>, Mississippi (May 29, 1968)</span></li>
+                    <li><span>Stop 10:</span><span>Aliceville</span><span>, Mississippi (May 30, 1968)</span></li>
+                    <li><span>Stop 11:</span><span>Eutaw</span><span>, Alabama (May 31, 1968)</span></li>
+                    <li><span>Stop 12:</span><span>Tuscaloosa</span><span>, Alabama (June 2, 1968)</span></li>
+                    <li><span>Stop 13:</span><span>Vance</span><span>, Alabama (June 3, 1968)</span></li>
+                    <li><span>Stop 14:</span><span>Bessemer</span><span>, Alabama (June 4, 1968)</span></li>
+                    <li><span>Stop 15:</span><span>Birmingham</span><span>, Alabama (June 5, 1968)</span></li>
+                    <li><span>Stop 16:</span><span>Leeds</span><span>, Alabama (June 6, 1968)</span></li>
+                    <li><span>Stop 17:</span><span>Pell City</span><span>, Alabama (June 8, 1968)</span></li>
+                    <li><span>Stop 18:</span><span>Anniston</span><span>, Alabama (June 10, 1968)</span></li>
+                    <li><span>Stop 19:</span><span>Heflin</span><span>, Alabama (June 11, 1968)</span></li>
+                    <li><span>Stop 20:</span><span>Tallapoosa</span><span>, Georgia (June 12, 1968)</span></li>
+                    <li><span>Stop 21:</span><span>Douglasville</span><span>, Georgia (June 13, 1968)</span></li>
+                    <li><span>Stop 22:</span><span>Atlanta</span><span>, Georgia (June 15, 1968)</span></li>
+                    <li><span>Stop 23:</span><span>Alexandria</span><span>, Virginia (June 17, 1968)</span></li>
+                    <li><span>Stop 24:</span><span>Washington</span><span>, DC (June 18, 1968)</span></li>
+                </ol>
+            </div>
+        </div>
+        <!-- Timeline Three -->
+        <div class="timeline-container">
+            <p>South Pink (Freedom Train)</p>
+            <div>
+                <ol class="timeline">
+                    <li><span>Stop 1:</span><span>Marks</span><span>, Mississippi (May 8, 1968)</span></li>
+                    <li><span>Stop 2:</span><span>Memphis</span><span>, Tennessee (May 8, 1968)</span></li>
+                    <li><span>Stop 3:</span><span>Nashville</span><span>, Tennessee (May 9, 1968)</span></li>
+                    <li><span>Stop 4:</span><span>Knoxville</span><span>, Tennessee (May 10, 1968)</span></li>
+                    <li><span>Stop 5:</span><span>Danville</span><span>, Virginia (May 11, 1968)</span></li>
+                    <li><span>Stop 6:</span><span>Washington</span><span>, DC (May 12, 1968)</span></li>
+                </ol>
+            </div>
+        </div>
+        <!-- Timeline Four -->
+
+        <div class="timeline-container">
+            <p>South Black (Southern Caravan)</p>
+            <div>
+                <ol class="timeline">
+                    <li><span>Stop 1:</span><span>Edwards</span><span>, Mississippi (May 4, 1968)</span></li>
+                    <li><span>Stop 2:</span><span>Selma</span><span>, Alabama (May 6, 1968)</span></li>
+                    <li><span>Stop 3:</span><span>Montgomery</span><span>, Alabama (May 7, 1968)</span></li>
+                    <li><span>Stop 4:</span><span>Atlanta</span><span>, Georgia (May 9, 1968)</span></li>
+                    <li><span>Stop 5:</span><span>Macon</span><span>, Georgia (May 10, 1968)</span></li>
+                    <li><span>Stop 6:</span><span>Savannah</span><span>, Georgia (May 11, 1968)</span></li>
+                    <li><span>Stop 7:</span><span>Charleston</span><span>, South Carolina (May 12, 1968)</span></li>
+                    <li><span>Stop 8:</span><span>Greenville</span><span>, South Carolina (May 13, 1968)</span></li>
+                    <li><span>Stop 9:</span><span>Charlotte</span><span>, North Carolina (May 14, 1968)</span></li>
+                    <li><span>Stop 10:</span><span>Greensboro</span><span>, North Carolina (May 15, 1968)</span></li>
+                    <li><span>Stop 11:</span><span>Durham</span><span>, North Carolina (May 16, 1968)</span></li>
+                    <li><span>Stop 12:</span><span>Norfolk</span><span>, Virginia (May 17, 1968)</span></li>
+                    <li><span>Stop 13:</span><span>Waverly</span><span>, Virginia (May 18, 1968)</span></li>
+                    <li><span>Stop 14:</span><span>Richmond</span><span>, Virginia (May 18, 1968)</span></li>
+                    <li><span>Stop 15:</span><span>Fairfax</span><span>, Virginia (May 19, 1968)</span></li>
+                    <li><span>Stop 16:</span><span>Alexandria</span><span>, Virginia (May 19, 1968)</span></li>
+                    <li><span>Stop 17:</span><span>Arlington</span><span>, Virginia (May 22, 1968)</span></li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Timeline Five -->
+        <div class="timeline-container">
+            <p>West Dark Blue (Midwestern Caravan)</p>
+            <div>
+                <ol class="timeline">
+                    <li><span>Stop 1:</span><span>Chicago</span><span>, Illinois (May 8, 1968)</span></li>
+                    <li><span>Stop 2:</span><span>Indianapolis</span><span>, Indiana (May 9, 1968)</span></li>
+                    <li><span>Stop 3:</span><span>Louisville</span><span>, Kentucky (May 10, 1968)</span></li>
+                    <li><span>Stop 4:</span><span>Dayton</span><span>, Ohio (May 11, 1968)</span></li>
+                    <li><span>Stop 5:</span><span>Columbus</span><span>, Ohio (May 11, 1968)</span></li>
+                    <li><span>Stop 6:</span><span>Toledo</span><span>, Ohio (May 12, 1968)</span></li>
+                    <li><span>Stop 7:</span><span>Detroit</span><span>, Michigan (May 13, 1968)</span></li>
+                    <li><span>Stop 8:</span><span>Cleveland</span><span>, Ohio (May 14, 1968)</span></li>
+                    <li><span>Stop 9:</span><span>Pittsburgh</span><span>, Pennsylvania (May 16, 1968)</span></li>
+                    <li><span>Stop 10:</span><span>Baltimore</span><span>, Maryland (May 18, 1968)</span></li>
+                    <li><span>Stop 11:</span><span>Washington</span><span>, DC (May 19, 1968)</span></li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Timeline Six -->
+        <div class="timeline-container">
+            <p>North Green (Eastern Caravan)</p>
+            <div>
+                <ol class="timeline">
+                    <li><span>Stop 1:</span><span>Brunswick</span><span>, Maine (May 8, 1968)</span></li>
+                    <li><span>Stop 2:</span><span>Boston</span><span>, Massachusetts (May 9, 1968)</span></li>
+                    <li><span>Stop 3:</span><span>Providence</span><span>, Rhode Island (May 10, 1968)</span></li>
+                    <li><span>Stop 4:</span><span>New Haven</span><span>, Connecticut (May 12, 1968)</span></li>
+                    <li><span>Stop 5:</span><span>Harlem</span><span>, New York (May 12, 1968)</span></li>
+                    <li><span>Stop 6:</span><span>Newark</span><span>, New Jersey (May 12, 1968)</span></li>
+                    <li><span>Stop 7:</span><span>Cranbury</span><span>, New Jersey (May 13, 1968)</span></li>
+                    <li><span>Stop 8:</span><span>Trenton</span><span>, New Jersey (May 13, 1968)</span></li>
+                    <li><span>Stop 9:</span><span>Philadelphia</span><span>, Pennsyvania (May 14, 1968)</span></li>
+                    <li><span>Stop 10:</span><span>Wilmington</span><span>, Delaware (May 15, 1968)</span></li>
+                    <li><span>Stop 11:</span><span>Baltimore</span><span>, Maryland (May 16, 1968)</span></li>
+                    <li><span>Stop 12:</span><span>Greenbelt</span><span>, Maryland (May 17, 1968)</span></li>
+                    <li><span>Stop 13:</span><span>Washington</span><span>, DC (May 18, 1968)</span></li>
+                </ol>
+            </div>
+        </div>
+        <!-- Timeline Seven -->
+         <div class="timeline-container">
+            <p>West Light Blue (Western Caravan)</p>
+            <div>
+                <ol class="timeline">
+                    <li><span>Stop 1:</span><span>San Francisco</span><span>, California (May 16, 1968)</span></li>
+                    <li><span>Stop 2:</span><span>Reno</span><span>, Nevada (May 17, 1968)</span></li>
+                    <li><span>Stop 3:</span><span>Salt Lake City</span><span>, Utah (May 18, 1968)</span></li>
+                    <li><span>Stop 4:</span><span>Denver</span><span>, Colorado (May 19, 1968)</span></li>
+                    <li><span>Stop 5:</span><span>Kansas City</span><span>, Missouri (May 20, 1968)</span></li>
+                    <li><span>Stop 6:</span><span>St. Louis</span><span>, Missouri (May 21, 1968)</span></li>
+                    <li><span>Stop 7:</span><span>Louisville</span><span>, Kentucky (May 22, 1968)</span></li>
+                    <li><span>Stop 8:</span><span>Bethesda</span><span>, Maryland (May 23, 1968)</span></li>
+                    <li><span>Stop 8:</span><span>Los Angeles</span><span>, California (May 15, 1968)</span></li>
+                    <li><span>Stop 9:</span><span>Phoenix</span><span>, Arizona (May 16, 1968)</span></li>
+                    <li><span>Stop 10:</span><span>El Paso</span><span>, Texas (May 17, 1968)</span></li>
+                    <li><span>Stop 11:</span><span>Albequerque</span><span>, New Mexico (May 18, 1968)</span></li>
+                    <li><span>Stop 12:</span><span>Dallas</span><span>, Texas (May 19, 1968)</span></li>
+                    <li><span>Stop 13:</span><span>Tulsa</span><span>, Oklahoma (May 19, 1968)</span></li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Timeline Eight -->
+
+        <div class="timeline-container">
+            <p>West Yellow (Western Caravan)</p>
+            <div>
+                <ol class="timeline">
+                    <li><span>Stop 1:</span><span>Seattle</span><span>, Washington (May 17, 1968)</span></li>
+                    <li><span>Stop 2:</span><span>Spokane</span><span>, Washington (May 18, 1968)</span></li>
+                    <li><span>Stop 3:</span><span>Billings</span><span>, Montana (May 19, 1968)</span></li>
+                    <li><span>Stop 4:</span><span>Bismarck</span><span>, North Dakota (May 20, 1968)</span></li>
+                    <li><span>Stop 5:</span><span>Minneapolis</span><span>, Minnesota (May 21, 1968)</span></li>
+                    <li><span>Stop 6:</span><span>Madison</span><span>, Wisconsin (May 21, 1968)</span></li>
+                    <li><span>Stop 7:</span><span>Toledo</span><span>, Ohio (May 22, 1968)</span></li>
+                    <li><span>Stop 8:</span><span>Bethesda</span><span>, Maryland (May 23, 1968)</span></li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Timeline Nine -->
+
+        <div class="timeline-container">
+            <p>West Orange (Western Caravan)</p>
+            <div>
+                <ol class="timeline">
+                    <li><span>Stop 1:</span><span>Fairmount</span><span>, West Virginia (May 30, 1968)</span></li>
+                    <li><span>Stop 2:</span><span>Moundsville</span><span>, Ohio (May 30, 1968)</span></li>
+                    <li><span>Stop 3:</span><span>Washington</span><span>, DC (May 31, 1968)</span></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!--End Timelines-->
+
+    <div id="viewDiv"></div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://js.arcgis.com/4.32/"></script>
+    <script src="./script/renderers.js"></script>
+    <script type="module" src="./script/script.js"></script>
+    <script src="./script/labels.js"></script>
+</body>
+</html>
