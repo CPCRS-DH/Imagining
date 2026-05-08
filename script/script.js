@@ -282,7 +282,8 @@ $('#city-close, #caravan-close' ).click(function(){
 
     //City popup image/text selectors
 
-    let imgUrl = document.getElementById('city-popup-image-id');
+    let cityImg = document.getElementById('city-popup-image-id');
+    let cityVideo = document.querySelector('.city-video');
     let caravan = document.querySelector('.caravan')
     let cityStateDate = document.querySelector('.city-state-date');
     let details = document.querySelector('.details');
@@ -305,6 +306,7 @@ $('#city-close, #caravan-close' ).click(function(){
         if (hitResult.results.length > 0 && hitResult.results[0].graphic.layer.id == "caravanStops") {
 
           const number = hitResult.results[0].graphic.attributes.CaravanNumber;
+          const stop = hitResult.results[0].graphic.attributes.CaravanStop;
           const carName = hitResult.results[0].graphic.attributes.CaravanName;
           const carCity = hitResult.results[0].graphic.attributes.City;
           const carState = hitResult.results[0].graphic.attributes.State;
@@ -333,16 +335,85 @@ $('#city-close, #caravan-close' ).click(function(){
           $('.filter-legend-container').fadeOut(700);
           $('.right-panel-btn-container').css('display', 'flex');
           $('.filter-btn').addClass('off');
+          
+          // Caravan One Media
 
-          //Temp image functionality//
+          const caravanOneVideoOne = "https://resurrectioncity.penndigitalscholarship.org/Memphis_Buses_Clip_2.mp4";
+          const caravanOneVideoTwo = "https://resurrectioncity.penndigitalscholarship.org/Marks_MS_Clip_1.mp4";
 
-          const imageOne = "./assets/images/placeholder2.jpg";
-          const imageTwo = "./assets/images/placeholder4.jpg";
+          // Caravan Two Media
+          
+          const caravanTwoVideo = "https://resurrectioncity.penndigitalscholarship.org/Marks_MS_Clip_1.mp4";
+          const caravanTwoImageOne = "./assets/images/Atkins_Mule_Train.JPG";
+          const caravanTwoImageTwo = "./assets/images/DCPL_Poor_Peoples_Campaign_Mule_Trains_Virginia_002.jpg";
 
-          if(number % 2 == 0) {
-            imgUrl.src = `${imageOne}`
+          // Caravan Three Media
+
+          const caravanThreeVideoOne = "https://resurrectioncity.penndigitalscholarship.org/Memphis_Buses_Clip_2.mp4";
+          const caravanThreeVideoTwo = "https://resurrectioncity.penndigitalscholarship.org/Marks_MS_Clip_1.mp4";
+
+          // Caravan Four Media
+
+          const caravanFourVideo = "https://resurrectioncity.penndigitalscholarship.org/Southern_Caravan_Clip_3.mp4";
+          
+          // Caravan Six Media 
+          const caravanSixVideo = "https://resurrectioncity.penndigitalscholarship.org/Northern_Caravan_Clip_4.mp4";
+          const caravanSixImage = "./assets/images/Globe_Caravan_Article.png";
+
+          // All Other Media
+
+          const caravanAllImage = "./assets/images/SCLCcover.jpg";
+
+          if(number === 1 && stop === 1) {
+            cityImg.classList.add('toggle');
+            cityVideo.classList.remove('toggle');
+            $('.popup').css('width', '45rem');
+            cityVideo.src = `${caravanOneVideoOne}`
+          } else if (number === 2 && [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 24].includes(stop)) {
+            cityVideo.classList.add('toggle');
+            cityImg.classList.remove('toggle');
+            $('.popup').css('width', '31rem');
+            cityImg.src = `${caravanTwoImageOne}`
+          } else if (number === 2 && stop === 1) {
+            cityImg.classList.add('toggle');
+            cityVideo.classList.remove('toggle');
+            $('.popup').css('width', '45rem');
+            cityVideo.src = `${caravanTwoVideo}`
+          } else if (number === 2 && stop === 23) {
+            cityVideo.classList.add('toggle');
+            cityImg.classList.remove('toggle');
+            $('.popup').css('width', '31rem');
+            cityImg.src = `${caravanTwoImageTwo}`
+          } else if (number === 3 && stop === 1) {
+            cityImg.classList.add('toggle');
+            cityVideo.classList.remove('toggle');
+            $('.popup').css('width', '45rem');
+            cityVideo.src = `${caravanThreeVideoOne}`
+          } else if (number === 3 && stop === 2) {
+            cityImg.classList.add('toggle');
+            cityVideo.classList.remove('toggle');
+            $('.popup').css('width', '45rem');
+            cityVideo.src = `${caravanThreeVideoTwo}`
+          } else if (number === 4) {
+            cityImg.classList.add('toggle');
+            cityVideo.classList.remove('toggle');
+            $('.popup').css('width', '45rem');
+            cityVideo.src = `${caravanFourVideo}`
+          } else if (number === 6 && stop === 2) {
+            cityVideo.classList.add('toggle');
+            cityImg.classList.remove('toggle');
+            $('.popup').css('width', '31rem');
+            cityImg.src = `${caravanSixImage}`
+          } else if (number === 6 && [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].includes(stop)) {
+            cityImg.classList.add('toggle');
+            cityVideo.classList.remove('toggle');
+            $('.popup').css('width', '45rem');
+            cityVideo.src = `${caravanSixVideo}`
           } else {
-            imgUrl.src = `${imageTwo}`
+            cityVideo.classList.add('toggle');
+            cityImg.classList.remove('toggle');
+            $('.popup').css('width', '31rem');
+            cityImg.src = `${caravanAllImage}`
           }
 
           //End Temp image functionality//
@@ -380,39 +451,30 @@ $('#city-close, #caravan-close' ).click(function(){
           $('.filter-legend-container').fadeOut(700);
           $('.right-panel-btn-container').css('display', 'flex');
           $('.filter-btn').addClass('off');
-
-          // If media is video, adjust classes
-
-          if (carNumber == 1 || carNumber == 4) {
-              caravanImg.classList.add('toggle');
-              caravanVideo.classList.remove('toggle');
-              $('.popup').css('width', '45rem');
-          } else {
-              caravanVideo.classList.add('toggle');
-              caravanImg.classList.remove('toggle');
-              $('.popup').css('width', '31rem');
-          }
             
           //Dynamically Add Image or Video to Popup//
 
-          // const caravanVideoOne = "./assets/video/Caravan1_PopupVideo.mp4";
           const caravanVideoOne = "https://resurrectioncity.penndigitalscholarship.org/Caravan1_PopupVideo.mp4";
-          const caravanImageTwo = "./assets/images/Caravan2_PopupImage.jpg"
-          const caravanImageThree = "./assets/images/Caravan3_PopupImage.jpg"
-          const caravanVideoFour = "https://resurrectioncity.penndigitalscholarship.org/Caravan4_PopupVideo.mp4"
-
-          const placeHolderOne = "./assets/images/placeholder2.jpg";
+          const caravanImage = "./assets/images/SCLCcover.jpg"
+          const caravanVideoFour = "https://resurrectioncity.penndigitalscholarship.org/Caravan4_PopupVideo.mp4";
           
+          console.log(carNumber);
+
           if(carNumber == 1) {
+            caravanImg.classList.add('toggle');
+            caravanVideo.classList.remove('toggle');
+            $('.popup').css('width', '45rem');
             caravanVideo.src = `${caravanVideoOne}` 
-          } else if (carNumber == 2) {
-            caravanImg.src = `${caravanImageTwo}`
-          } else if (carNumber == 3) {
-            caravanImg.src = `${caravanImageThree}`
           } else if (carNumber == 4) {
+            caravanImg.classList.add('toggle');
+            caravanVideo.classList.remove('toggle');
+            $('.popup').css('width', '45rem');
             caravanVideo.src = `${caravanVideoFour}`
           } else {
-            caravanImg.src = `${placeHolderOne}`
+            caravanImg.src = `${caravanImage}`
+            caravanVideo.classList.add('toggle');
+            caravanImg.classList.remove('toggle');
+            $('.popup').css('width', '31rem');
           }
 
           //End Dynamically Add Image or Video to Popup//
@@ -440,12 +502,12 @@ $('#city-close, #caravan-close' ).click(function(){
 
     /***Add Highlight for Selected Caravan Routes***/
 
-    const specificIds = [2];
-    let highlightHandle;
+    // const specificIds = [2];
+    // let highlightHandle;
 
-    view.whenLayerView(caravanRoutes).then((layerViewHighlight) => {
-      highlightHandle = layerViewHighlight.highlight(specificIds, { name: "notable"});
-    });
+    // view.whenLayerView(caravanRoutes).then((layerViewHighlight) => {
+    //   highlightHandle = layerViewHighlight.highlight(specificIds, { name: "notable"});
+    // });
 
     /***Filter Functionality */
 

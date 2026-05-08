@@ -11,6 +11,16 @@
 </head>
 <body>
 
+    <!-- Optimization Warning -->
+    
+    <div id="optimizationWarning">
+        <div class="warningBox">
+            <h1 class="warningText">Please view on a larger device</h1> 
+            <hr class="warningLine">
+            <h1 class="warningText">Optimized version in development</h1>
+        </div>
+    </div> 
+
     <!--Splash Page-->
 
     <div class="splash-container">
@@ -192,7 +202,7 @@
         </div>
         <div class="panel-line"></div>
         <div class="help-panel-text">
-            <p>Select a route to see where the caravans stopped and what cause they were fighting for. We recommend you spend some extra time exploring the Mule Train (South Red, highlighted on the map), which features additional archival materials.</p>
+            <p>Select a route to see where the caravans stopped and what cause they were fighting for. We recommend you spend some extra time exploring the Mule Train (South Red), which features additional archival materials.</p>
         </div>
     </div>
 
@@ -200,12 +210,32 @@
 
     <!--Cities Popup-->
 
-    <div class="popup" id="city-card">
+    <!-- <div class="popup" id="city-card">
         <div class="popup-close">
             <i id="city-close" class="fa-solid fa-close"></i>
         </div>
         <div class="popup-container">
             <img src="#" class="app-image" id="city-popup-image-id">
+            <div class="caravan-container">
+                <p class="caravan"></p>
+            </div>
+            <div class="panel-line"></div>
+            <div class="place-date-container">
+                <p class="city-state-date"></p>
+            </div>
+            <p class="details"></p>
+        </div>
+    </div> -->
+
+    <div class="popup" id="city-card">
+        <div class="popup-close">
+            <i id="city-close" class="fa-solid fa-close"></i>
+        </div>
+        <div class="popup-container">
+            <div class="caravan-image">
+                <video class="city-video" autoplay loop muted><source class="app-video" src="#"></video>
+                <img src="#" class="app-image" id="city-popup-image-id">
+            </div>
             <div class="caravan-container">
                 <p class="caravan"></p>
             </div>
@@ -330,6 +360,7 @@
                 <p>Responding to the paradoxical challenge of preserving an ephemeral landscape, we assembled images, public media, and archives - connecting them through mapping and apps - to produce a “digital atlas” re-presenting the spatial experiences of RC in conversation with the same spaces we experience today. It is a simulacrum of sorts, and a provocation to relate the erased and the actual landscape in our own moment.</p>
                 <p>The use of geographic methods is intended to make this work relatable and useful to others: the atlas functions as an interpretation of this particular site on the National Mall; as a framework for connecting to other adjacent civil rights landscapes in the DC monumental core; and as a prompt for others to build more and better digital atlases as a novel preservation workflow to meet future needs and priorities.</p>
                 <p>The Resurrection City Digital Atlas was produced by a dedicated and creative team of researchers and developers. Elizabeth Donison created a foundation of archival research; Daniel Watts led digital design and development work; Emily Holloway curated and crafted the whole digital atlas; Lia Schiffito provided development support on the atlas's participatory functions; and Randy Mason and Brent Fortenberry conceived the project with former NPS landscape architect Julie McGilvray. The project also benefited greatly from the historical expertise and insights of Kate Masur, Derek Musgrave, and Sarah Schoenfeld, as well as Cheryl LaRoche and Thaïsa Way.</p>
+                <p>Get in touch with us at <a href="mailto:civilrightsites@design.upenn.edu">civilrightsites@design.upenn.edu</a></p>
             </div>
             <div class="modal-tab-content" id="modal-tab-two">
                 <h3>Smithsonian - National Museum of African American History and Culture (NMAAHC)</h3>
